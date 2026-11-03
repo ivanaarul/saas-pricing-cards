@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SaaS Pricing Cards</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f2f4ff;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 36px;
+    color: #20234a;
+}
+
+.subtitle {
+    margin: 15px 0 30px;
+    color: #777;
+}
+
+.toggle {
+    margin-bottom: 40px;
+}
+
+.toggle button {
+    padding: 12px 25px;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    background: #ddd;
+    font-weight: bold;
+}
+
+.toggle button.active {
+    background: #635bff;
+    color: white;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    width: 300px;
+    padding: 35px 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px #0001;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 15px 35px #635bff30;
+}
+
+.popular {
+    border: 2px solid #635bff;
+    position: relative;
+}
+
+.tag {
+    background: #635bff;
+    color: white;
+    padding: 7px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+h2 {
+    margin: 20px 0;
+    color: #25264b;
+}
+
+.price {
+    font-size: 38px;
+    font-weight: bold;
+    color: #635bff;
+    margin: 20px 0;
+}
+
+.price span {
+    font-size: 14px;
+    color: #888;
+}
+
+ul {
+    list-style: none;
+    margin: 25px 0;
+    line-height: 2.5;
+    color: #555;
+}
+
+.plan-btn {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    background: #635bff;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.plan-btn:hover {
+    background: #4038d9;
+}
+
+@media(max-width: 650px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    .cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 350px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Choose Your Perfect Plan</h1>
+<p class="subtitle">Simple pricing. Powerful features. Grow your business.</p>
+
+<div class="toggle">
+    <button id="monthly" class="active" onclick="changePlan('monthly')">
+        Monthly
+    </button>
+    <button id="yearly" onclick="changePlan('yearly')">
+        Yearly - Save 20%
+    </button>
+</div>
+
+<div class="cards">
+
+    <div class="card">
+        <h2>Basic</h2>
+        <p>Perfect for beginners</p>
+        <div class="price" id="price1">$9<span>/month</span></div>
+        <ul>
+            <li>✔ 5 Projects</li>
+            <li>✔ Basic Analytics</li>
+            <li>✔ Email Support</li>
+            <li>✔ 5 GB Storage</li>
+        </ul>
+        <button class="plan-btn" onclick="choosePlan('Basic')">
+            Get Started
+        </button>
+    </div>
+
+    <div class="card popular">
+        <span class="tag">MOST POPULAR</span>
+        <h2>Pro</h2>
+        <p>For growing businesses</p>
+        <div class="price" id="price2">$19<span>/month</span></div>
+        <ul>
+            <li>✔ Unlimited Projects</li>
+            <li>✔ Advanced Analytics</li>
+            <li>✔ Priority Support</li>
+            <li>✔ 50 GB Storage</li>
+        </ul>
+        <button class="plan-btn" onclick="choosePlan('Pro')">
+            Get Started
+        </button>
+    </div>
+
+    <div class="card">
+        <h2>Enterprise</h2>
+        <p>For large organizations</p>
+        <div class="price" id="price3">$49<span>/month</span></div>
+        <ul>
+            <li>✔ Unlimited Projects</li>
+            <li>✔ Custom Analytics</li>
+            <li>✔ 24/7 Support</li>
+            <li>✔ Unlimited Storage</li>
+        </ul>
+        <button class="plan-btn" onclick="choosePlan('Enterprise')">
+            Get Started
+        </button>
+    </div>
+
+</div>
+
+<script>
+function changePlan(type) {
+    let prices = type === "monthly"
+        ? [9, 19, 49]
+        : [86, 182, 470];
+
+    document.getElementById("price1").innerHTML =
+        `$${prices[0]}<span>/${type === "monthly" ? "month" : "year"}</span>`;
+
+    document.getElementById("price2").innerHTML =
+        `$${prices[1]}<span>/${type === "monthly" ? "month" : "year"}</span>`;
+
+    document.getElementById("price3").innerHTML =
+        `$${prices[2]}<span>/${type === "monthly" ? "month" : "year"}</span>`;
+
+    document.getElementById("monthly").classList.toggle(
+        "active", type === "monthly"
+    );
+
+    document.getElementById("yearly").classList.toggle(
+        "active", type === "yearly"
+    );
+}
+
+function choosePlan(plan) {
+    alert("You selected the " + plan + " plan!");
+}
+</script>
+
+</body>
+</html>
